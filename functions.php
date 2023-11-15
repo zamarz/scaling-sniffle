@@ -1,5 +1,10 @@
 <?php
 
+require_once realpath(__DIR__ . "/vendor/autoload.php");
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 function pageBanner($args = NULL) {
     if (!isset($args['title'])) {
       $args['title'] =  get_the_title();
@@ -19,7 +24,7 @@ function pageBanner($args = NULL) {
 
     ?>
     <div class="page-banner">
-      <div class="page-banner__bg-image" style="background-image: url(<?php echo $args['photo']; ?>)"></div>
+      <div class="page-banner__bg-image" s50tyle="background-image: url(<?php echo $args['photo']; ?>)"></div>
       <div class="page-banner__content container container--narrow">
         <h1 class="page-banner__title"><?php echo $args['title']; ?></h1>
         <div class="page-banner__intro">
@@ -78,6 +83,19 @@ function university_adjust_queries($query) {
     }
 }
 
+
 add_action('pre_get_posts', 'university_adjust_queries');
+
+
+
+function universityMapKey($api) {
+
+$googleAPI = $_ENV["GOOGLE_MAPS_KEY"];
+
+  $api['key'] = $googleAPI;
+  return $api;
+}
+
+add_filter('acf/fields/google_map/api', 'universityMapKey');
 
 ?>
