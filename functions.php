@@ -5,6 +5,8 @@ use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
+
+
 function pageBanner($args = NULL) {
     if (!isset($args['title'])) {
       $args['title'] =  get_the_title();
@@ -36,6 +38,10 @@ function pageBanner($args = NULL) {
 }
 
 function university_files() {
+  $googleAPI = $_ENV["GOOGLE_MAPS_KEY"];
+  
+
+    wp_enqueue_script('googleMap', "//maps.googleapis.com/maps/api/js?key=$googleAPI", NULL, '1.0', true);
     wp_enqueue_script('main-university-js', get_theme_file_uri('/build/index.js'), array('jquery'), '1.0', true);
     wp_enqueue_style('university_main_styles', get_theme_file_uri('/build/style-index.css'));
     wp_enqueue_style('university_extra_styles', get_theme_file_uri('/build/index.css'));
@@ -90,7 +96,7 @@ add_action('pre_get_posts', 'university_adjust_queries');
 
 function universityMapKey($api) {
 
-$googleAPI = $_ENV["GOOGLE_MAPS_KEY"];
+  $googleAPI = $_ENV["GOOGLE_MAPS_KEY"];
 
   $api['key'] = $googleAPI;
   return $api;
