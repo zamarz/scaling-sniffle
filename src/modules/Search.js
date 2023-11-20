@@ -19,10 +19,12 @@ class Search {
   //3. methods (funciton, action...)
   openOverlay() {
     this.searchOverlay.addClass("search-overlay--active");
+    $("body").addClass("body-no-scroll");
   }
 
   closeOverlay() {
     this.searchOverlay.removeClass("search-overlay");
+    $("body").removeClass("body-no-scroll");
   }
 }
 
