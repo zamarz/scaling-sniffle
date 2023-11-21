@@ -58,9 +58,10 @@ class Search {
           "/wp-json/wp/v2/pages?search=" +
           this.searchField.val()
       )
-    ).then((posts, pages) => {
-      let combinedResults = posts[0].concat(pages[0]);
-      this.resultsDiv.html(`
+    ).then(
+      (posts, pages) => {
+        let combinedResults = posts[0].concat(pages[0]);
+        this.resultsDiv.html(`
     <h2 class="search-overlay__section-title">General Information</h2>
       ${
         combinedResults.length
@@ -75,8 +76,12 @@ class Search {
           .join("")}
       ${combinedResults.length ? `</ul>` : ""}
       `);
-      this.isSpinnerVisible = false;
-    });
+        this.isSpinnerVisible = false;
+      },
+      () => {
+        this.resultsDiv.html("<p>Unexpected error, please try again.</p>");
+      }
+    );
   }
   //
 
