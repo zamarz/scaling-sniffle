@@ -77,11 +77,11 @@ while($mainQuery-> have_posts()) {
         ));
     }
     
-
-    array_push($results['generalInfo'], array(
-        'title' => get_the_title(),
-        'permalink' => get_the_permalink() 
-    ));
+//not sure if this is needed?
+    // array_push($results['generalInfo'], array(
+    //     'title' => get_the_title(),
+    //     'permalink' => get_the_permalink() 
+    // ));
 }
 
 $programRelationshipQuery = new WP_Query(array(
@@ -90,7 +90,7 @@ $programRelationshipQuery = new WP_Query(array(
         array(
             'key' => 'related_programs',
             'compare' => 'LIKE',
-            'value' => '"29"'
+            'value' => '"24"'
         )
         )
 ));
@@ -108,6 +108,7 @@ while($programRelationshipQuery->have_posts()) {
     }
 }
 
+    $results['professors'] = array_values(array_unique($results['professors'], SORT_REGULAR));
     return $results;
 
 }
