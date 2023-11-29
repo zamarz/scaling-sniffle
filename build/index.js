@@ -2225,13 +2225,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "jquery");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
 class Like {
-  constructor() {}
-  events() {}
+  constructor() {
+    this.events();
+  }
+  events() {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(".like-box").on("click", this.ourClickDispatcher.bind(this));
+  }
 
   //methods
+  ourClickDispatcher(e) {
+    let currentLikeBox = jquery__WEBPACK_IMPORTED_MODULE_0___default()(e.target.closest(".like-box"));
+    if (currentLikeBox.data("exists") == "yes") {
+      this.deleteLike();
+    } else {
+      this.createLike();
+    }
+  }
+  createLike() {
+    alert("create test message");
+  }
+  deleteLike() {
+    alert("delete test message");
+  }
 }
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Like);
 
 /***/ }),
@@ -2591,6 +2611,17 @@ class Search {
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
+
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/***/ ((module) => {
+
+"use strict";
+module.exports = window["jQuery"];
 
 /***/ }),
 

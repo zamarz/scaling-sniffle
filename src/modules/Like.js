@@ -1,9 +1,32 @@
-class Like {
-  constructor() {}
+import $ from "jquery";
 
-  events() {}
+class Like {
+  constructor() {
+    this.events();
+  }
+
+  events() {
+    $(".like-box").on("click", this.ourClickDispatcher.bind(this));
+  }
 
   //methods
+  ourClickDispatcher(e) {
+    let currentLikeBox = $(e.target.closest(".like-box"));
+
+    if (currentLikeBox.data("exists") == "yes") {
+      this.deleteLike();
+    } else {
+      this.createLike();
+    }
+  }
+
+  createLike() {
+    alert("create test message");
+  }
+
+  deleteLike() {
+    alert("delete test message");
+  }
 }
 
 export default Like;
