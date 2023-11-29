@@ -19,13 +19,15 @@ while(have_posts()) {
             </div>
           <div class="two-thirds">
             <?php 
+
+
             $likeCount = new WP_Query(array(
               'post_type' => 'like',
               'meta-query' => array(
                 array(
                   'key' => 'liked_professor_id',
                   'compare' => '=',
-                  'value' => get_the_ID()
+                  'value' => get_the_id()
                 )
               )
             ));
@@ -39,7 +41,7 @@ while(have_posts()) {
                 array(
                   'key' => 'liked_professor_id',
                   'compare' => '=',
-                  'value' => get_the_ID()
+                  'value' => get_the_id()
                 )
               )
             ));
