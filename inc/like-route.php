@@ -31,7 +31,7 @@ function createLike($data) {
             )
           ));
 
-        if ($existQuery->found_posts== 0 AND get_post_type($professor) == 'professor') {
+        if ($existQuery->found_posts == 0 AND get_post_type($professor) == 'professor') {
             return wp_insert_post(array(
                 'post_type' => 'like',
                 'post_status' => 'publish',
@@ -52,12 +52,16 @@ function createLike($data) {
 }
 
 function deleteLike($data) {
-   $professor = sanitize_text_field($data['professorId']);
-    wp_insert_post(array(
-        'post_type' => 'like',
-        'post_status' => 'publish',
-        'post_title' => '2nd PHP Create Post Test',
-        'meta_input' => array(
-            'liked_professor_id' => $professor
-        )
-    ));}
+   $likeId = sanitize_text_field($data['like']);
+   
+    if(get_current_user_id() == get_post_field('post_author', $likeId) AND get_post_type($likeId) == 'like') {
+        wp_delete_post($likeId, true);
+        return 'Congrats, like deleted';
+    } else {
+        die('You do not have permission to delete that.');
+    }
+
+
+
+
+}
