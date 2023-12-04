@@ -1,5 +1,7 @@
 # Wordpress Tutorial Site
 
+[alt text](https://github.com/zamarz/scaling-sniffle/blob/main/Site-screenshot.png)
+
 This is a project where I learnt how to use Wordpress with PHP. It is a fake site for a university that helped me develop web and PHP skills.
 
 If you would like to develop something similar the course is here: https://www.udemy.com/course/become-a-wordpress-developer-php-javascript/
